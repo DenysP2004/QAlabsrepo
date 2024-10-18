@@ -2,7 +2,7 @@ import re
 from playwright.sync_api import Playwright, sync_playwright, expect
 
 
-def test_long(playwright: Playwright) -> None:
+def longtest(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
     page = context.new_page()
@@ -36,7 +36,7 @@ def test_long(playwright: Playwright) -> None:
     context.close()
     browser.close()
 
-def test_short(playwright: Playwright) -> None:
+def shorttest(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
     page = context.new_page()
@@ -54,3 +54,6 @@ def test_short(playwright: Playwright) -> None:
     context.close()
     browser.close()
 
+with sync_playwright() as playwright:
+    longtest(playwright)
+    shorttest(playwright)
